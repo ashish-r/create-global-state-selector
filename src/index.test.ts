@@ -1,4 +1,4 @@
-import createGlobalStateSelector from '../lib/index';
+import createGlobalStateSelector from './';
 
 describe('createGlobalStateSelector', () => {
   const store = { a: { b: { x: 55, y: 65, z: 'temp' } } };
