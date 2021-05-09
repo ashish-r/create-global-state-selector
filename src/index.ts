@@ -17,14 +17,14 @@ export default function createGlobalSelector<
     };
 
 export default function createGlobalSelector(
-  selectorFuncsObj: Record<string, Function> | Function,
+  selectors: Record<string, Function> | Function,
   ...sliceStructure: Array<string>
 ) {
-  if (typeof selectorFuncsObj === 'function')
+  if (typeof selectors === 'function')
     return (state: Record<string, any>) =>
-      selectorFuncsObj(getNestedObject(state, ...sliceStructure));
+      selectors(getNestedObject(state, ...sliceStructure));
   return Object.fromEntries(
-    Object.entries(selectorFuncsObj).map(([key, selectorFunc]) => [
+    Object.entries(selectors).map(([key, selectorFunc]) => [
       key,
       (state: Record<string, any>) =>
         selectorFunc(getNestedObject(state, ...sliceStructure)),
