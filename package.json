@@ -42,10 +42,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": ["lint-staged", "test"]
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "src/": "prettier --write --ignore-unknown"
+    "src/": ["prettier --write --ignore-unknown", "git add"]
   }
 }
