@@ -1,7 +1,7 @@
 {
   "name": "create-global-state-selector",
-  "version": "1.0.2",
-  "description": "Create global state selectors from local slice selectors",
+  "version": "1.0.3",
+  "description": "Create global state selectors from local redux slice selectors",
   "main": "lib/index.js",
   "types": "lib",
   "scripts": {
@@ -20,10 +20,8 @@
     "react",
     "redux",
     "redux-toolkit",
-    "redux",
-    "selector",
-    "slice",
-    "selector"
+    "redux-selector",
+    "slice-selector"
   ],
   "author": "Ashish Ranjan",
   "license": "MIT",
