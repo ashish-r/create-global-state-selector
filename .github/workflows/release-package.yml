@@ -41,7 +41,7 @@ jobs:
           scope: '@ashish-r'
 
       - name: Insert repository owner as scope into package name
-      - run: |
+        run: |
           node <<EOF
           const fs = require('fs').promises;
           fs.readFile('package.json', 'utf8').then((data) => JSON.parse(data)).then((json) => {
