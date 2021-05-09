@@ -46,10 +46,9 @@
     }
   },
   "lint-staged": {
-    "src/": [
+    "src": [
       "npm run format:fix",
-      "npm run test --bail",
-      "git add"
+      "npm run test --bail"
     ]
   }
 }
