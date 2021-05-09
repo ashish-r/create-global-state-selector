@@ -6,7 +6,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ashish-r/create-global-state-selector/blob/master/LICENSE)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashish-r%2Fcreate-global-state-selector.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashish-r%2Fcreate-global-state-selector?ref=badge_shield)
 
-# Welcome to StackEdit!
 Create global state selectors from local redux slice selectors.
 In `redux` each of the slices are autonomus and final store structure is defined by how the individual slices are merged with `combineReducers` .  `createGlobalStateSelector` takes local slice selectors and the slice structure to return global state selectors.
 
@@ -137,6 +136,10 @@ The example below uses `redux-toolkit` however you can use `createGlobalStateSel
     const  store = { a: { b: { x:  55, y:  65, z:  'temp' } } };
     
     selectZ(store) // 'temp'
+
+## FYI
+`createGlobalStateSelector` uses `Object.fromEntries` and `Object.entries` which are not pollyfilled to reduce the package size. If needed, Please add your own polyfills, or target your polyfills accordingly for Babel, Webpack, Rollup etc.
+
 
 ## License
 
