@@ -12,9 +12,6 @@
     "format:fix": "prettier --write \"src/\"",
     "prepublish": "npm run build"
   },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ashish-r/create-global-state-selector.git"
@@ -47,5 +44,8 @@
     "hooks": {
       "pre-commit": ["lint-staged", "test"]
     }
-  }  
+  },
+  "lint-staged": {
+    "src/": "prettier --write --ignore-unknown"
+  }
 }
