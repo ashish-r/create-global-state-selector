@@ -1,9 +1,9 @@
-import createGlobalSelector from './';
+import createGlobalStateSelector from '../lib/index';
 
-describe('createGlobalSelector', () => {
+describe('createGlobalStateSelector', () => {
   const store = { a: { b: { x: 55, y: 65, z: 'temp' } } };
   it('should return object of global selector functions', () => {
-    const { selectX, selectY, selectZ } = createGlobalSelector(
+    const { selectX, selectY, selectZ } = createGlobalStateSelector(
       {
         selectX: (state: Record<string, any>): number => state.x,
         selectY: (state: Record<string, any>): number => state.y,
@@ -18,7 +18,7 @@ describe('createGlobalSelector', () => {
   });
 
   it('should return a global selector function', () => {
-    const selectX = createGlobalSelector(
+    const selectX = createGlobalStateSelector(
       (state: Record<string, any>): number => state.x,
       'a',
       'b'

@@ -3,7 +3,7 @@ const getNestedObject: (
   ...keys: Array<string | number>
 ) => any = (obj, ...keys) => keys.reduce((acc, cur) => acc[cur], obj);
 
-export default function createGlobalSelector<
+export default function createGlobalStateSelector<
   T extends Record<keyof T, (arg: any) => any> | Function
 >(
   selectorFuncsObj: T,
@@ -16,7 +16,7 @@ export default function createGlobalSelector<
         : never;
     };
 
-export default function createGlobalSelector(
+export default function createGlobalStateSelector(
   selectors: Record<string, Function> | Function,
   ...sliceStructure: Array<string>
 ) {
