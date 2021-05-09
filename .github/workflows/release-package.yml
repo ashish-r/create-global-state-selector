@@ -1,4 +1,4 @@
-name: build npm package
+name: deploy npm package
 
 on:
   release:
