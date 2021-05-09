@@ -1,0 +1,34 @@
+{
+  "name": "create-global-state-selector",
+  "version": "1.0.0",
+  "description": "Create global state selectors from local slice selectors",
+  "main": "lib/index.js",
+  "types": "lib",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -p ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashish-r/create-global-state-selector.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "redux-toolkit",
+    "redux",
+    "selector",
+    "slice",
+    "selector"
+  ],
+  "author": "Ashish Ranjan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ashish-r/create-global-state-selector/issues"
+  },
+  "homepage": "https://github.com/ashish-r/create-global-state-selector#readme",
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.4"
+  }
+}
