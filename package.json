@@ -1,15 +1,19 @@
 {
   "name": "create-global-state-selector",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Create global state selectors from local slice selectors",
   "main": "lib/index.js",
   "types": "lib",
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build": "tsc -p .",
+    "build": "npm run format:check && npm run test && tsc -p . && echo \"Build successful inside lib\"",
     "format:check": "prettier --check \"src/\"",
-    "format:fix": "prettier --write \"src/\""
+    "format:fix": "prettier --write \"src/\"",
+    "prepublish": "npm run build"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   },
   "repository": {
     "type": "git",
@@ -32,9 +36,16 @@
   "homepage": "https://github.com/ashish-r/create-global-state-selector#readme",
   "devDependencies": {
     "@types/jest": "^26.0.23",
+    "husky": "^6.0.0",
     "jest": "^26.6.3",
+    "lint-staged": "^11.0.0",
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.6",
     "typescript": "^4.2.4"
-  }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": ["lint-staged", "test"]
+    }
+  }  
 }
