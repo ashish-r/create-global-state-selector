@@ -46,6 +46,6 @@
     }
   },
   "lint-staged": {
-    "src/": ["prettier --write --ignore-unknown", "git add"]
+    "src/": ["npm run format:fix", "npm run test --bail", "git add"]
   }
 }

@@ -14,7 +14,7 @@ describe('createGlobalSelector', () => {
     );
     expect(selectX(store)).toBe(55);
     expect(selectY(store)).toBe(65);
-    expect(selectZ(store)).toBe(75);
+    expect(selectZ(store)).toBe(95);
   });
 
   it('should return a global selector function', () => {
