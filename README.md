@@ -5,6 +5,8 @@
 [![DeepScan grade](https://deepscan.io/api/teams/10012/projects/17109/branches/380047/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=10012&pid=17109&bid=380047)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/ashish-r/create-global-state-selector/blob/master/LICENSE)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fashish-r%2Fcreate-global-state-selector.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fashish-r%2Fcreate-global-state-selector?ref=badge_shield)
+[![Bundlephobia](https://badgen.net/bundlephobia/minzip/create-global-state-selector)](https://bundlephobia.com/result?p=create-global-state-selector)
+
 
 Create global state selectors from local redux slice selectors.
 In `redux` each of the slices are autonomus and final store structure is defined by how the individual slices are merged with `combineReducers` .  `createGlobalStateSelector` takes local slice selectors and the slice structure to return global state selectors.
