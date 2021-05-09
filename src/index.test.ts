@@ -13,7 +13,7 @@ describe('createGlobalSelector', () => {
       'b'
     );
     expect(selectX(store)).toBe(55);
-    expect(selectY(store)).toBe(85);
+    expect(selectY(store)).toBe(45);
     expect(selectZ(store)).toBe('temp');
   });
 
