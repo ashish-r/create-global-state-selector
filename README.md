@@ -15,7 +15,7 @@ In `redux` each of the slices are autonomus and final store structure is defined
     npm i create-global-state-selector
 
 ## Uses
-The example below uses `redux-toolkit` however you can use this with any standard Flux pattern that has multiple independent stores / slices, and are merged together with `combineReducers`.
+The example below uses `redux-toolkit` however you can use `createGlobalStateSelector` with any standard Flux pattern that has multiple independent stores / slices, and are merged together with `combineReducers`.
     
     // personalDetailsSlice.js
     
