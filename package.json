@@ -7,7 +7,9 @@
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "format:check": "prettier --check \"src/\"",
+    "format:fix": "prettier --write \"src/\""
   },
   "repository": {
     "type": "git",
