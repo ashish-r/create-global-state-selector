@@ -1,6 +1,6 @@
 {
   "name": "create-global-state-selector",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Create global state selectors from local redux slice selectors",
   "main": "lib/index.js",
   "types": "lib",
