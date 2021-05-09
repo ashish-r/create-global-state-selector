@@ -1,4 +1,4 @@
-name: create-global-state-selector npm package
+name: build npm package
 
 on:
   release:
