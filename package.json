@@ -48,5 +48,8 @@
       "npm run format:fix",
       "npm run test --bail --findRelatedTests"
     ]
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
