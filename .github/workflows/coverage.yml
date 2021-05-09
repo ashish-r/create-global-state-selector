@@ -4,29 +4,16 @@ on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 2 
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: npm ci
 
-    - name: Set up Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run the tests
-      run: test:coverage
-    
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1.5.0
+      - name: Run the tests
+        run: test:coverage
+      
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1.5.0
