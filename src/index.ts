@@ -31,16 +31,3 @@ export default function createGlobalSelector(
     ])
   );
 }
-
-// const { selectX, selectY, selectZ } = createGlobalSelector(
-//   {
-//     selectX: (state: Record<string, any>): number => state.x,
-//     selectY: (state: Record<string, any>): number => state.y,
-//     selectZ: (state: Record<string, any>): string => state.z,
-//   },
-//   'a',
-//   'b'
-// );
-
-// const globalf = createGlobalSelector((state: any) => state.x, 'a', 'b');
-// globalf({ a: 'kjh' });

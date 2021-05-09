@@ -1,7 +1,7 @@
 import createGlobalSelector from './';
 
 describe('createGlobalSelector', () => {
-  const store = { a: { b: { x: 55, y: 65, z: 75 } } };
+  const store = { a: { b: { x: 55, y: 65, z: 'temp' } } };
   it('should return object of global selector functions', () => {
     const { selectX, selectY, selectZ } = createGlobalSelector(
       {
@@ -14,7 +14,7 @@ describe('createGlobalSelector', () => {
     );
     expect(selectX(store)).toBe(55);
     expect(selectY(store)).toBe(65);
-    expect(selectZ(store)).toBe(75);
+    expect(selectZ(store)).toBe('temp');
   });
 
   it('should return a global selector function', () => {
