@@ -8,87 +8,83 @@
 [![Bundlephobia](https://badgen.net/bundlephobia/minzip/create-global-state-selector)](https://bundlephobia.com/result?p=create-global-state-selector)
 
 
+
 Create global state selectors from local redux slice selectors.
-In `redux` each of the slices are autonomus and final store structure is defined by how the individual slices are merged with `combineReducers` .  `createGlobalStateSelector` takes local slice selectors and the slice structure to return global state selectors.
+In `redux` each of the slices is autonomous and the final store structure is defined by how the individual slices are merged with `combineReducers`. `createGlobalStateSelector` takes local slice selectors and the slice structure to return global state selectors.
 
 ## Install
 
     npm i create-global-state-selector
 
 ## Uses
-The example below uses `redux-toolkit` however you can use `createGlobalStateSelector` with any standard Flux pattern that has multiple independent stores / slices, and are merged together with `combineReducers`.
-    
+The example below uses `redux-toolkit` however you can use `createGlobalStateSelector` with any standard Flux pattern that has multiple independent stores/slices, and are merged together with `combineReducers`.
+
+        
     // personalDetailsSlice.js
     
     import { createSlice } from '@reduxjs/toolkit';
     import createGlobalStateSelector from 'create-global-state-selector';
     
-    const sliceKey = 'personalDetails';
+    export const sliceKey = 'personalDetails';
     const initialState = {
       name: 'Ashish',
       age: '26',
-      isEligibleToDrink: true,
+      isEligibleToDrink: true
     };
-
+    
     const { actions, reducer } = createSlice({
       name: sliceKey,
       initialState,
       reducers: {
-        setName(state, {payload}) {
+        setName(state, { payload }) {
           state.name = payload;
         },
-        setAge(state, {payload}) {
+        setAge(state, { payload }) {
           state.age = payload;
         },
-        setIsEligibleToDrink(state) {
+        setDrinkingEligibilityBasedOnAge(state) {
           state.isEligibleToDrink = selectLocalAge(state) >= 18;
         }
-      },
+      }
     });
     
     function selectLocalName(state) {
       return state.name;
-    } 
+    }
     function selectLocalAge(state) {
       return state.age;
-    } 
+    }
     function selectLocalIsEligibleToDrink(state) {
       return state.isEligibleToDrink;
-    } 
+    }
     
-    export  default reducer;
-    export const { increment, decrement } = actions;
-    export sliceKey;
+    export default reducer;
+    export const { setName, setAge, setDrinkingEligibilityBasedOnAge } = actions;
     
-    export const { 
-      selectName,
-      selectAge,
-      selectIsEligibleToDrink
-    } = createGlobalStateSelector(
+    export const { selectName, selectAge, selectIsEligibleToDrink } = createGlobalStateSelector(
       {
         selectName: selectLocalName,
         selectAge: selectLocalAge,
-        selectIsEligibleToDrink: selectLocalIsEligibleToDrink,
-      }, 
-      personalDetailsSliceKey,
+        selectIsEligibleToDrink: selectLocalIsEligibleToDrink
+      },
+      sliceKey
     );
     
     // Global selectors created from local slice selectors
     // final store structure: state = { [sliceKey] : { name: 'Ashish', age: 26 } }
     // selectName(state) // 'Ashish'
     // selectAge(state) // 26
-
     
 ---  
     // store.js
+
+    import { createStore, combineReducers } from 'redux';
+    import personalDetailsReducer, { sliceKey as personalDetailsSliceKey } from './personalDetailsSlice';
     
-    import  { createStore, combineReducers } from 'redux';
-    import personalDetailsReducer, { sliceKey as personalDetailsSliceKey } from personalDetailsSlice;
-    
-    const reducer =  combineReducers({
-      [personalDetailsSliceKey]: personalDetailsReducer,
+    const reducer = combineReducers({
+      [personalDetailsSliceKey]: personalDetailsReducer
     });
-    const store = createStore(reducer); 
+    const store = createStore(reducer);
     // { personalDetails : { name: 'Ashish', age: '26', isEligibleToDrink: true } }
     
     export default store;
@@ -107,36 +103,33 @@ The example below uses `redux-toolkit` however you can use `createGlobalStateSel
       {
         selectX: (state: Record<string, any>): number => state.x,
         selectY: (state: Record<string, any>): number => state.y,
-        selectZ: (state: Record<string, any>): string => state.z,
+        selectZ: (state: Record<string, any>): string => state.z
       },
       'a',
       'b'
     );
-
-    // Final store signature after combineReducers
-    const  store = { a: { b: { x:  55, y:  65, z:  'temp' } } };
     
-    selectX(store) // 55
-    selectY(store) // 65
-    selectZ(store) // 'temp'
+    // Final store signature after combineReducers
+    const store = { a: { b: { x: 55, y: 65, z: 'temp' } } };
+    
+    selectX(store); // 55
+    selectY(store); // 65
+    selectZ(store); // 'temp'
 
 ### Pass a local slice selector
 
-    const selectZ = createGlobalStateSelector(
-      (state: Record<string, any>): number => state.z,
-      'a',
-      'b'
-    );
-
-    // Final store signature after combineReducers
-    const  store = { a: { b: { x:  55, y:  65, z:  'temp' } } };
+    const selectZ = createGlobalStateSelector((state: Record<string, any>): number => state.z, 'a', 'b');
     
-    selectZ(store) // 'temp'
+    // Final store signature after combineReducers
+    const store = { a: { b: { x: 55, y: 65, z: 'temp' } } };
+    
+    selectZ(store); // 'temp'
 
 ## FYI
-`createGlobalStateSelector` uses `Object.fromEntries` and `Object.entries` which are not pollyfilled to reduce the package size. If needed, Please add your own polyfills, or target your polyfills accordingly for Babel, Webpack, Rollup etc.
+`createGlobalStateSelector` uses `Object.fromEntries` and `Object.entries` which are not pollyfilled to reduce the package size. If needed, please add your own polyfills, or target your polyfills accordingly for Babel, Webpack, Rollup, etc.
 
 
 ## License
 
 MIT
+
