@@ -21,6 +21,7 @@ The example below uses `redux-toolkit` however you can use `createGlobalStateSel
     // personalDetailsSlice.js
     
     import { createSlice } from '@reduxjs/toolkit';
+    import createGlobalStateSelector from 'create-global-state-selector';
     
     const sliceKey = 'personalDetails';
     const initialState = {
@@ -45,18 +46,38 @@ The example below uses `redux-toolkit` however you can use `createGlobalStateSel
       },
     });
     
+    function selectLocalName(state) {
+      return state.name;
+    } 
+    function selectLocalAge(state) {
+      return state.age;
+    } 
+    function selectLocalIsEligibleToDrink(state) {
+      return state.isEligibleToDrink;
+    } 
+    
     export  default reducer;
     export const { increment, decrement } = actions;
     export sliceKey;
-    export function selectLocalName(state) {
-      return state.name;
-    } 
-    export function selectLocalAge(state) {
-      return state.age;
-    } 
-    export function selectLocalIsEligibleToDrink(state) {
-      return state.isEligibleToDrink;
-    } 
+    
+    export const { 
+      selectName,
+      selectAge,
+      selectIsEligibleToDrink
+    } = createGlobalStateSelector(
+      {
+        selectName: selectLocalName,
+        selectAge: selectLocalAge,
+        selectIsEligibleToDrink: selectLocalIsEligibleToDrink,
+      }, 
+      personalDetailsSliceKey,
+    );
+    
+    // Global selectors created from local slice selectors
+    // final store structure: state = { [sliceKey] : { name: 'Ashish', age: 26 } }
+    // selectName(state) // 'Ashish'
+    // selectAge(state) // 26
+
     
 ---  
     // store.js
@@ -71,33 +92,6 @@ The example below uses `redux-toolkit` however you can use `createGlobalStateSel
     // { personalDetails : { name: 'Ashish', age: '26', isEligibleToDrink: true } }
     
     export default store;
-
----  
-    // selectors.js
-    import createGlobalStateSelector from 'create-global-state-selector';
-    import { 
-      sliceKey as personalDetailsSliceKey, 
-      selectLocalName,
-      selectLocalAge,
-      selectLocalIsEligibleToDrink
-    } from personalDetailsSlice;
-     
-    export const { 
-      selectName,
-      selectAge,
-      selectIsEligibleToDrink
-    } = createGlobalStateSelector(
-      {
-        selectName: selectLocalName,
-        selectAge: selectLocalAge,
-        selectIsEligibleToDrink: selectLocalIsEligibleToDrink,
-      }, 
-      personalDetailsSliceKey
-    );
-    
-    // Global selectors created from local slice selectors
-    // selectName({ personalDetails : { name: 'Ashish' } }) // 'Ashish'
-    // selectAge({ personalDetails : { age: 26 } }) // 26
     
     
 
